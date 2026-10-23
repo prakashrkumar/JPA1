@@ -1,10 +1,7 @@
 package prakash.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import prakash.model.Department;
 import prakash.service.DepartmentService;
 
@@ -20,6 +17,12 @@ public class DepartController {
     @PostMapping
     public ResponseEntity<String>createDepartment(@RequestBody Department department){
         departmentService.createDepartment(department);
+        return ResponseEntity.ok("create successfully");
+    }
+
+    @PostMapping("/withStudent")
+    public ResponseEntity<String>createDepartment(@RequestBody Department department, @RequestParam String studentName){
+        departmentService.createDepartment(department,studentName);
         return ResponseEntity.ok("create successfully");
     }
 }
